@@ -7,8 +7,13 @@ Training an image recognition algorithm to extract information and give insight 
 
 ## Tech stack
 -Web Api 2
+
 -HTML
+
 -Css
+
 -Javascript
+
 -Jquery
+
 -Knockout.js
