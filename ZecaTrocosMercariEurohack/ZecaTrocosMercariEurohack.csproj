@@ -61,6 +61,9 @@
       <HintPath>..\packages\LINQPad.5.26.1\lib\net46\lprun.exe</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RestSharp, Version=106.5.4.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.5.4\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -177,13 +180,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BasicStringObj.cs" />
+    <Compile Include="Models\CategorizeResponse.cs" />
     <Compile Include="Models\Hint.cs">
       <DependentUpon>KnowledgeDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HintDto.cs" />
-    <Compile Include="Models\HintModifier.cs">
-      <DependentUpon>KnowledgeDbContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\KnowledgeDbContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -199,9 +201,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KnowledgeDbContext.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Modifier.cs">
-      <DependentUpon>KnowledgeDbContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +215,7 @@
     <Content Include="MercariMockup\Assets\common_css.css" />
     <Content Include="MercariMockup\Assets\logo.svg" />
     <Content Include="MercariMockup\Assets\sell.css" />
+    <Content Include="MercariMockup\Assets\sell_custom.css" />
     <Content Include="MercariMockup\sell.html" />
     <Content Include="MercariMockup\sell.js" />
     <Content Include="Models\KnowledgeDbContext.Context.tt">
@@ -238,7 +238,7 @@
     <Content Include="Models\KnowledgeDbContext.edmx.diagram">
       <DependentUpon>KnowledgeDbContext.edmx</DependentUpon>
     </Content>
-    <Content Include="toasterTest\HTMLPage1.html" />
+    <Content Include="testimg.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

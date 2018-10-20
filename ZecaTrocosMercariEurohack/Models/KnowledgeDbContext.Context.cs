@@ -26,7 +26,5 @@ namespace ZecaTrocosMercariEurohack.Models
         }
     
         public virtual DbSet<Hint> Hints { get; set; }
-        public virtual DbSet<HintModifier> HintModifiers { get; set; }
-        public virtual DbSet<Modifier> Modifiers { get; set; }
     }
 }

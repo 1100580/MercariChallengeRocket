@@ -13,7 +13,29 @@ function getBase64(file) {
     var reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
-        console.log(reader.result);
+        $.ajax({
+            type: "POST",
+            url: "/api/Categorize",
+            data: { "basicString": reader.result },
+            success: function (category) {
+                $.ajax({
+                    type: "GET",
+                    url: "/api/GetHintsByCategoryAndModifiers/" + category,
+                    success: function (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            var options = {
+                                "closeButton": true,
+                                "newestOnTop": true,
+                                "progressBar": true,
+                                "timeOut": "0",
+                                "extendedTimeOut": "0",
+                            }
+                            toastr.info(result[i].HintText, 'Selling ' + category + "?", options)
+                        }
+                    }
+                });
+            }
+        });
     };
     reader.onerror = function (error) {
         console.log('Error: ', error);
@@ -21,8 +43,5 @@ function getBase64(file) {
 }
 
 $('#fileInput').on("change", function () {
-    //faking a category, can't get the api to work now
-    var category = 'Digital camera';
-
-
+    getBase64($('#fileInput')[0].files[0]);
 });

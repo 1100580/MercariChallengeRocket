@@ -1,0 +1,29 @@
+﻿#toast-container > div {
+    box-shadow: none;
+    color: #5E6DF2;
+    font-family: NunitoSans,sans-serif;
+    font-size: 14px;
+    text-align: center;
+    opacity: 1;
+    padding: 15px;
+}
+
+.toast-info {
+    background: white;
+    text-align: center;
+}
+
+.toast-title{
+    margin-bottom: 10px;
+}
+
+.toast-close-button {
+    color: #5E6DF2;
+}
+
+#toast-container > div:hover {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    opacity: 1;
+}

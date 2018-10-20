@@ -8,7 +8,7 @@ namespace ZecaTrocosMercariEurohack.Models
     public class HintDto
     {
         public int Id { get; set; }
-        public int CategoryIdentifier { get; set; }
+        public string CategoryIdentifier { get; set; }
         public string HintText { get; set; }
     }
 }

@@ -14,17 +14,8 @@ namespace ZecaTrocosMercariEurohack.Models
     
     public partial class Hint
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Hint()
-        {
-            this.HintModifiers = new HashSet<HintModifier>();
-        }
-    
         public int Id { get; set; }
-        public int CategoryIdentifier { get; set; }
+        public string CategoryIdentifier { get; set; }
         public string HintText { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HintModifier> HintModifiers { get; set; }
     }
 }
