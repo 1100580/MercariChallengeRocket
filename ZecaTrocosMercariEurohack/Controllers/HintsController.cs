@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using ZecaTrocosMercariEurohack.Models;
 using LINQPad;
+using AutoMapper;
 
 namespace ZecaTrocosMercariEurohack.Controllers
 {
@@ -21,7 +22,7 @@ namespace ZecaTrocosMercariEurohack.Controllers
         // GET: api/Hints
         [HttpGet]
         [Route("/api/GetHintsByCategoryAndModifiers/{category}/{csmodifiers}")]
-        public List<Hint> GetHintsByCategoryAndModifiers(string category, string csmodifiers)
+        public List<HintDto> GetHintsByCategoryAndModifiers(string category, string csmodifiers)
         {
             List<Hint> dbHints;
 
@@ -37,7 +38,7 @@ namespace ZecaTrocosMercariEurohack.Controllers
                 ele.HintModifiers.Any(som => mods.Contains(som.Modifier.Name))).ToList();
             }
 
-            return dbHints;
+            return Mapper.Map<List<HintDto>>(dbHints);
         }
 
         protected override void Dispose(bool disposing)

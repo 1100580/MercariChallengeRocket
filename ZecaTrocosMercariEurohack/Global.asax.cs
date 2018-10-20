@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using ZecaTrocosMercariEurohack.Models;
 
 namespace ZecaTrocosMercariEurohack
 {
@@ -18,6 +19,16 @@ namespace ZecaTrocosMercariEurohack
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ConfigAutoMapper();
+        }
+
+        private void ConfigAutoMapper()
+        {
+            AutoMapper.Mapper.Initialize(cfg => {
+                cfg.CreateMap<Hint, HintDto>();
+                cfg.CreateMap<HintDto, Hint>();
+            });
         }
     }
 }

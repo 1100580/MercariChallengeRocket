@@ -212,6 +212,12 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="MercariMockup\Assets\app.us.css" />
+    <Content Include="MercariMockup\Assets\common_css.css" />
+    <Content Include="MercariMockup\Assets\logo.svg" />
+    <Content Include="MercariMockup\Assets\sell.css" />
+    <Content Include="MercariMockup\sell.html" />
+    <Content Include="MercariMockup\sell.js" />
     <Content Include="Models\KnowledgeDbContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>KnowledgeDbContext.Context.cs</LastGenOutput>
@@ -240,9 +246,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MockupOfMercari\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
@@ -256,6 +260,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MercariMockup\Assets\icon-font.woff" />
+    <Content Include="MercariMockup\Assets\NunitoSans-Bold.ttf" />
+    <Content Include="MercariMockup\Assets\NunitoSans-Light.ttf" />
+    <Content Include="MercariMockup\Assets\NunitoSans-Regular.ttf" />
+    <Content Include="MercariMockup\Assets\OpenSans-Regular.ttf" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
