@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KnowledgeDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Hint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryIdentifier" Type="int" Nullable="false" />
+          <Property Name="HintText" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HintModifier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="HintId" Type="int" Nullable="false" />
+          <Property Name="ModifierId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Modifier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_HintModifier_Hint">
+          <End Role="Hint" Type="Self.Hint" Multiplicity="1" />
+          <End Role="HintModifier" Type="Self.HintModifier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hint">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HintModifier">
+              <PropertyRef Name="HintId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HintModifier_Modifier">
+          <End Role="Modifier" Type="Self.Modifier" Multiplicity="1" />
+          <End Role="HintModifier" Type="Self.HintModifier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modifier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HintModifier">
+              <PropertyRef Name="ModifierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KnowledgeDbModelStoreContainer">
+          <EntitySet Name="Hint" EntityType="Self.Hint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HintModifier" EntityType="Self.HintModifier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modifier" EntityType="Self.Modifier" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_HintModifier_Hint" Association="Self.FK_HintModifier_Hint">
+            <End Role="Hint" EntitySet="Hint" />
+            <End Role="HintModifier" EntitySet="HintModifier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HintModifier_Modifier" Association="Self.FK_HintModifier_Modifier">
+            <End Role="Modifier" EntitySet="Modifier" />
+            <End Role="HintModifier" EntitySet="HintModifier" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KnowledgeDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="KnowledgeDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Hints" EntityType="KnowledgeDbModel.Hint" />
+          <EntitySet Name="HintModifiers" EntityType="KnowledgeDbModel.HintModifier" />
+          <EntitySet Name="Modifiers" EntityType="KnowledgeDbModel.Modifier" />
+          <AssociationSet Name="FK_HintModifier_Hint" Association="KnowledgeDbModel.FK_HintModifier_Hint">
+            <End Role="Hint" EntitySet="Hints" />
+            <End Role="HintModifier" EntitySet="HintModifiers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HintModifier_Modifier" Association="KnowledgeDbModel.FK_HintModifier_Modifier">
+            <End Role="Modifier" EntitySet="Modifiers" />
+            <End Role="HintModifier" EntitySet="HintModifiers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Hint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryIdentifier" Type="Int32" Nullable="false" />
+          <Property Name="HintText" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HintModifiers" Relationship="KnowledgeDbModel.FK_HintModifier_Hint" FromRole="Hint" ToRole="HintModifier" />
+        </EntityType>
+        <EntityType Name="HintModifier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="HintId" Type="Int32" Nullable="false" />
+          <Property Name="ModifierId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hint" Relationship="KnowledgeDbModel.FK_HintModifier_Hint" FromRole="HintModifier" ToRole="Hint" />
+          <NavigationProperty Name="Modifier" Relationship="KnowledgeDbModel.FK_HintModifier_Modifier" FromRole="HintModifier" ToRole="Modifier" />
+        </EntityType>
+        <EntityType Name="Modifier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HintModifiers" Relationship="KnowledgeDbModel.FK_HintModifier_Modifier" FromRole="Modifier" ToRole="HintModifier" />
+        </EntityType>
+        <Association Name="FK_HintModifier_Hint">
+          <End Type="KnowledgeDbModel.Hint" Role="Hint" Multiplicity="1" />
+          <End Type="KnowledgeDbModel.HintModifier" Role="HintModifier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hint">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HintModifier">
+              <PropertyRef Name="HintId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HintModifier_Modifier">
+          <End Type="KnowledgeDbModel.Modifier" Role="Modifier" Multiplicity="1" />
+          <End Type="KnowledgeDbModel.HintModifier" Role="HintModifier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modifier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HintModifier">
+              <PropertyRef Name="ModifierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KnowledgeDbModelStoreContainer" CdmEntityContainer="KnowledgeDbEntities">
+          <EntitySetMapping Name="Hints">
+            <EntityTypeMapping TypeName="KnowledgeDbModel.Hint">
+              <MappingFragment StoreEntitySet="Hint">
+                <ScalarProperty Name="HintText" ColumnName="HintText" />
+                <ScalarProperty Name="CategoryIdentifier" ColumnName="CategoryIdentifier" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HintModifiers">
+            <EntityTypeMapping TypeName="KnowledgeDbModel.HintModifier">
+              <MappingFragment StoreEntitySet="HintModifier">
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="HintId" ColumnName="HintId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modifiers">
+            <EntityTypeMapping TypeName="KnowledgeDbModel.Modifier">
+              <MappingFragment StoreEntitySet="Modifier">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
