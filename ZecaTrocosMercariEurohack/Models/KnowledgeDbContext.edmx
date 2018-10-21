@@ -12,6 +12,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryIdentifier" Type="nvarchar(max)" Nullable="false" />
           <Property Name="HintText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CsFields" Type="nvarchar(max)" />
         </EntityType>
         <EntityContainer Name="KnowledgeDbModelStoreContainer">
           <EntitySet Name="Hint" EntityType="Self.Hint" Schema="dbo" store:Type="Tables" />
@@ -30,6 +31,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryIdentifier" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="HintText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CsFields" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -40,6 +42,7 @@
           <EntitySetMapping Name="Hints">
             <EntityTypeMapping TypeName="KnowledgeDbModel.Hint">
               <MappingFragment StoreEntitySet="Hint">
+                <ScalarProperty Name="CsFields" ColumnName="CsFields" />
                 <ScalarProperty Name="HintText" ColumnName="HintText" />
                 <ScalarProperty Name="CategoryIdentifier" ColumnName="CategoryIdentifier" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

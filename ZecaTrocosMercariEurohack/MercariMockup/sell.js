@@ -23,13 +23,16 @@ function getBase64(file) {
                     url: "/api/GetHintsByCategoryAndModifiers/" + category,
                     success: function (result) {
                         for (var i = 0; i < result.length; i++) {
+                            var cs = result[i].CsFields;
                             var options = {
                                 "closeButton": true,
                                 "newestOnTop": true,
                                 "progressBar": true,
                                 "timeOut": "0",
                                 "extendedTimeOut": "0",
+                                "onclick": function () { promptfields(cs); }
                             }
+
                             toastr.info(result[i].HintText, 'Selling ' + category + "?", options)
                         }
                     }
@@ -45,3 +48,23 @@ function getBase64(file) {
 $('#fileInput').on("change", function () {
     getBase64($('#fileInput')[0].files[0]);
 });
+
+function promptfields(csfields) {
+    if (csfields != null && csfields != undefined && csfields.length > 0) {
+        var arrayOfFields = csfields.split(",");
+
+        if (arrayOfFields != null && arrayOfFields.length > 0) {
+
+            var addToDescription = $("#description").val();
+            for (var i = 0; i < arrayOfFields.length; i++) {
+                let stringToDisplay = arrayOfFields[i].trim();
+                addToDescription += stringToDisplay.charAt(0).toUpperCase() + stringToDisplay.slice(1) + ': \n';
+            }
+
+            $("#description").val(addToDescription);
+            $('html,body').animate({
+                scrollTop: $("#description").offset().top
+            }, 'slow');
+        }
+    }
+}

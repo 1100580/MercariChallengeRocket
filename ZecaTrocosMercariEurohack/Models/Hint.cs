@@ -17,5 +17,6 @@ namespace ZecaTrocosMercariEurohack.Models
         public int Id { get; set; }
         public string CategoryIdentifier { get; set; }
         public string HintText { get; set; }
+        public string CsFields { get; set; }
     }
 }
